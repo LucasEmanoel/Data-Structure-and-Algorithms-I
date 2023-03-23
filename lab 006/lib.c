@@ -1,5 +1,11 @@
-//#include <seuOutroArquivo.h> chamar assim na main
 #include <stdio.h>
+
+void listNumbers(int vetor[], int size){
+   int i = 0;
+   for (i = 0; i < size; i++) {
+      printf("%d - ", vetor[i]);
+   } 
+}
 
 void bubbleSort(int vetor[], int n){
    int aux, j, i;
