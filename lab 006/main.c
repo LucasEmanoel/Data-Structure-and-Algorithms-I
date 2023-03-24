@@ -28,15 +28,16 @@ int main()
   FILE *numbers;
   numbers = fopen("random_numbers.txt", "r");
 
-  clock_t timeBubbleSort, timeSelection, timeInsertion;
+  clock_t timeBubbleSort, timeSelection, timeInsertion, timeMerge;
   
-  int * rawList, *sortByBubble, *sortBySelection, *sortByInsertion;
+  int * rawList, *sortByBubble, *sortBySelection, *sortByInsertion, *sortByMerge;
   rawList = (int*) malloc( sizeof(int) * 10000);
   rawList = readFile(numbers);
 
   sortByBubble = (int*) malloc( sizeof(int) * 10000);
   sortBySelection = (int*) malloc( sizeof(int) * 10000);
   sortByInsertion = (int*) malloc( sizeof(int) * 10000);
+  sortByMerge = (int*) malloc( sizeof(int) * 10000);
   
 
   timeBubbleSort = clock();
@@ -56,6 +57,12 @@ int main()
   //just for check the result 
   //listNumbers(sortByInsertion, 10000);
   printf("\nInsertion Sort:\t\t%f seconds\n",(clock() - timeInsertion) / (double)CLOCKS_PER_SEC);
+
+  timeMerge = clock();
+  mergeSort(rawList, 0, 10000);
+  //just for check the result 
+  listNumbers(rawList, 10000);
+  printf("\nMerge Sort:\t\t%f seconds\n",(clock() - timeMerge) / (double)CLOCKS_PER_SEC);
 
   fclose(numbers);
   return 0;

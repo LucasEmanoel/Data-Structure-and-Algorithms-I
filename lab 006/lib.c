@@ -55,3 +55,65 @@ int * insertionSort(int *vetor, int n){
   return vetor;
 }
 
+void merge(int *vetor, int left, int m, int right){
+	int i, j, k;
+	int n1 = m - left + 1; 
+	int n2 = right - m;
+
+	int L[n1], R[n2];
+	for (i = 0; i < n1; i++)
+	{
+		L[i] = vetor[left + i];
+	}
+	for (j = 0; j < n2; j++)
+	{
+		R[j] = vetor[m + 1 + j];
+	}
+	
+	i = 0;
+	j = 0;
+	k = left;
+
+	while (i < n1 && j < n2)
+	{
+		if (L[i] <= R[j])
+		{
+			vetor[k] = L[i];
+			i++;
+		}
+		else
+		{
+			vetor[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+	//caso nao seja vetor par sobra alguns elementos
+
+	while (i < n1)
+	{
+		vetor[k] = L[i];
+		i++;
+		k++;
+	}
+	
+	while (j < n2)
+	{
+		vetor[k] = R[j];
+		j++;
+		k++;
+	}
+	
+}
+//first element and last
+void mergeSort(int *vetor, int left, int right){
+	if(left < right){
+		int m = left + (right - left) / 2; //m equals mid element
+
+		mergeSort(vetor, left, m); //repeat for left array
+		mergeSort(vetor, m+1, right); //repeat for right array
+		//merge current block of numbers 
+		merge(vetor, left, m, right);
+	}
+}
+
