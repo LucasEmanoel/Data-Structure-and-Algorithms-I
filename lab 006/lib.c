@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-void listNumbers(int vetor[], int size){
+void listNumbers(int * vetor, int size){
    int i = 0;
    for (i = 0; i < size; i++) {
       printf("%d - ", vetor[i]);
    } 
 }
 
-void bubbleSort(int vetor[], int n){
+int * bubbleSort(int *vetor, int n){
    int aux, j, i;
    for (i = 0; i < n; i++) { 
        for (j = 0; j < n - i - 1; j++) {   
@@ -18,9 +18,10 @@ void bubbleSort(int vetor[], int n){
            }
        }
    }
+   return vetor;
 }
 
-void selectionSort(int vetor[], int n){
+int * selectionSort(int *vetor, int n){
    int min, aux, j, i = 0;
 	
 	for(i = 0; i <= n-2; i++){
@@ -35,4 +36,22 @@ void selectionSort(int vetor[], int n){
 		vetor[i] = vetor[min];
 		vetor[min] = aux;
 	}
+   return vetor;
 }
+
+
+int * insertionSort(int *vetor, int n){
+	int aux, i, j;
+	for(j=1; j < n; j++){
+		aux = vetor[j];
+		
+		i = j - 1;
+		while(i > -1 && vetor[i] > aux){
+			vetor[i + 1] = vetor[i];
+			i = i - 1;
+		}
+		vetor[i + 1] = aux;
+	}
+  return vetor;
+}
+
