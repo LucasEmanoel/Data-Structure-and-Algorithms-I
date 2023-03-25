@@ -55,26 +55,27 @@ int * insertionSort(int *vetor, int n){
   return vetor;
 }
 
-void merge(int *vetor, int left, int m, int right){
+void merge(int *vetor, int ini, int mid, int end){
 	int i, j, k;
-	int n1 = m - left + 1; 
-	int n2 = right - m;
+	int n1 = mid - ini + 1; 
+	int n2 = end - mid;
 
+	//Create and copy values - half vetor to L and R.
 	int L[n1], R[n2];
 	for (i = 0; i < n1; i++)
 	{
-		L[i] = vetor[left + i];
+		L[i] = vetor[ini + i];
 	}
 	for (j = 0; j < n2; j++)
 	{
-		R[j] = vetor[m + 1 + j];
+		R[j] = vetor[mid + 1 + j]; //se chama no merge sort com mid + 1 e j igual a zero diferente do pseudo cod
 	}
-	
-	i = 0;
-	j = 0;
-	k = left;
 
-	while (i < n1 && j < n2)
+	i = 1;
+	j = 1;
+	//k = ini;
+	//essa parte devo pegar o inicio dos elementos e fim percorrer ate o fim(size segundo vetor)
+	for (k = ini; k < n2; k++)
 	{
 		if (L[i] <= R[j])
 		{
@@ -86,34 +87,16 @@ void merge(int *vetor, int left, int m, int right){
 			vetor[k] = R[j];
 			j++;
 		}
-		k++;
 	}
-	//caso nao seja vetor par sobra alguns elementos
-
-	while (i < n1)
-	{
-		vetor[k] = L[i];
-		i++;
-		k++;
-	}
-	
-	while (j < n2)
-	{
-		vetor[k] = R[j];
-		j++;
-		k++;
-	}
-	
 }
-//first element and last
-void mergeSort(int *vetor, int left, int right){
-	if(left < right){
-		int m = left + (right - left) / 2; //m equals mid element
+void mergeSort(int *vetor, int ini, int end){
+	if(ini < end){
+		int mid = (ini + end) / 2; //mid equals mid element
 
-		mergeSort(vetor, left, m); //repeat for left array
-		mergeSort(vetor, m+1, right); //repeat for right array
+		mergeSort(vetor, ini, mid); //repeat for ini array
+		mergeSort(vetor, mid + 1 , end); //repeat for end array
 		//merge current block of numbers 
-		merge(vetor, left, m, right);
+		merge(vetor, ini, mid, end);
 	}
 }
 
