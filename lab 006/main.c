@@ -28,41 +28,46 @@ int main()
   FILE *numbers;
   numbers = fopen("random_numbers.txt", "r");
 
-  clock_t timeBubbleSort, timeSelection, timeInsertion, timeMerge;
+  clock_t timeBubbleSort, timeSelection, timeInsertion, timeMerge, timeQuick;
   
-  int * rawList, *sortByBubble, *sortBySelection, *sortByInsertion, *sortByMerge;
+  int * rawList, *sortByBubble, *sortBySelection, *sortByInsertion;
   rawList = (int*) malloc( sizeof(int) * 10000);
   rawList = readFile(numbers);
 
   sortByBubble = (int*) malloc( sizeof(int) * 10000);
   sortBySelection = (int*) malloc( sizeof(int) * 10000);
   sortByInsertion = (int*) malloc( sizeof(int) * 10000);
-  sortByMerge = (int*) malloc( sizeof(int) * 10000);
   
 
-  timeBubbleSort = clock();
-  sortByBubble = bubbleSort(rawList, 10000);
+  //timeBubbleSort = clock();
+  //sortByBubble = bubbleSort(rawList, 10000);
   //just for check the result 
   //listNumbers(sortByBubble, 10000);
-  printf("\nBubbleSort:\t\t%f seconds\n",(clock() - timeBubbleSort) / (double)CLOCKS_PER_SEC);
+  //printf("\nBubbleSort:\t\t%f seconds\n",(clock() - timeBubbleSort) / (double)CLOCKS_PER_SEC);
 
-  timeSelection = clock();
-  sortBySelection = selectionSort(rawList, 10000);
+  //timeSelection = clock();
+  //sortBySelection = selectionSort(rawList, 10000);
   //just for check the result 
   //listNumbers(sortBySelection, 10000);
-  printf("\nSelection Sort:\t\t%f seconds\n",(clock() - timeSelection) / (double)CLOCKS_PER_SEC);
+  //printf("\nSelection Sort:\t\t%f seconds\n",(clock() - timeSelection) / (double)CLOCKS_PER_SEC);
 
-  timeInsertion = clock();
-  sortByInsertion = insertionSort(rawList, 10000);
+  //timeInsertion = clock();
+  //sortByInsertion = insertionSort(rawList, 10000);
   //just for check the result 
   //listNumbers(sortByInsertion, 10000);
-  printf("\nInsertion Sort:\t\t%f seconds\n",(clock() - timeInsertion) / (double)CLOCKS_PER_SEC);
+  //printf("\nInsertion Sort:\t\t%f seconds\n",(clock() - timeInsertion) / (double)CLOCKS_PER_SEC);
 
-  timeMerge = clock();
-  mergeSort(rawList, 0, 10000);
+  //timeMerge = clock();
+  //mergeSort(rawList, 0, 10000);
+  //just for check the result 
+  //listNumbers(rawList, 10000);
+  //printf("\nMerge Sort:\t\t%f seconds\n",(clock() - timeMerge) / (double)CLOCKS_PER_SEC);
+
+  timeQuick = clock();
+  quickSort(rawList, 0, 10000);
   //just for check the result 
   listNumbers(rawList, 10000);
-  printf("\nMerge Sort:\t\t%f seconds\n",(clock() - timeMerge) / (double)CLOCKS_PER_SEC);
+  printf("\nQuick Sort:\t\t%f seconds\n",(clock() - timeQuick) / (double)CLOCKS_PER_SEC);
 
   fclose(numbers);
   return 0;

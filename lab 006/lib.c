@@ -89,6 +89,7 @@ void merge(int *vetor, int ini, int mid, int end){
 		}
 	}
 }
+
 void mergeSort(int *vetor, int ini, int end){
 	if(ini < end){
 		int mid = (ini + end) / 2; //mid equals mid element
@@ -100,3 +101,31 @@ void mergeSort(int *vetor, int ini, int end){
 	}
 }
 
+int partition(int *vetor, int p, int r){
+    int x = vetor[r];
+    int i = p - 1;
+    int j, aux;
+    
+    for(j = p;j < r - 1; j++){
+        if(vetor[j] <= x){
+            i = i + 1;
+            aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
+        }
+    }
+    aux = vetor[i + 1];
+		vetor[i + 1] = vetor[r];
+		vetor[r] = aux;
+
+    return i + 1;
+}
+
+void quickSort(int *vetor, int p, int r){
+    int q;
+    if(p < r) {
+        q = partition(vetor, p, r);
+        quickSort(vetor, p, q - 1);
+        quickSort(vetor, q + 1, r);
+    }
+}
