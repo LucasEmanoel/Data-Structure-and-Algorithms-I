@@ -30,46 +30,42 @@ int main()
 
   clock_t timeBubbleSort, timeSelection, timeInsertion, timeMerge, timeQuick;
   
-  int * rawList, *sortByBubble, *sortBySelection, *sortByInsertion;
-  rawList = (int*) malloc( sizeof(int) * 10000);
-  rawList = readFile(numbers);
+  int * arrayNumbers, * arr;
 
-  sortByBubble = (int*) malloc( sizeof(int) * 10000);
-  sortBySelection = (int*) malloc( sizeof(int) * 10000);
-  sortByInsertion = (int*) malloc( sizeof(int) * 10000);
-  
+  arrayNumbers = readFile(numbers);
+  arr = (int*) malloc(sizeof(int) * 10000);
 
-  //timeBubbleSort = clock();
-  //sortByBubble = bubbleSort(rawList, 10000);
-  //just for check the result 
-  //listNumbers(sortByBubble, 10000);
-  //printf("\nBubbleSort:\t\t%f seconds\n",(clock() - timeBubbleSort) / (double)CLOCKS_PER_SEC);
+  memcpy(arr, arrayNumbers, sizeof(int) * 10000);
+  timeBubbleSort = clock();
+  bubbleSort(arrayNumbers, 10000);
+  printf("\nBubbleSort:\t\t%f seconds\n",(clock() - timeBubbleSort) / (double)CLOCKS_PER_SEC);
 
-  //timeSelection = clock();
-  //sortBySelection = selectionSort(rawList, 10000);
-  //just for check the result 
-  //listNumbers(sortBySelection, 10000);
-  //printf("\nSelection Sort:\t\t%f seconds\n",(clock() - timeSelection) / (double)CLOCKS_PER_SEC);
+  memcpy(arrayNumbers, arr, sizeof(int) * 10000);
+  timeSelection = clock();
+  selectionSort(arrayNumbers, 10000);
+  printf("\nSelection Sort:\t\t%f seconds\n",(clock() - timeSelection) / (double)CLOCKS_PER_SEC);
 
-  //timeInsertion = clock();
-  //sortByInsertion = insertionSort(rawList, 10000);
-  //just for check the result 
-  //listNumbers(sortByInsertion, 10000);
-  //printf("\nInsertion Sort:\t\t%f seconds\n",(clock() - timeInsertion) / (double)CLOCKS_PER_SEC);
+  memcpy(arrayNumbers, arr, sizeof(int) * 10000);
+  timeInsertion = clock();
+  insertionSort(arrayNumbers, 10000);
+  printf("\nInsertion Sort:\t\t%f seconds\n",(clock() - timeInsertion) / (double)CLOCKS_PER_SEC);
 
-  //timeMerge = clock();
-  //mergeSort(rawList, 0, 10000);
-  //just for check the result 
-  //listNumbers(rawList, 10000);
-  //printf("\nMerge Sort:\t\t%f seconds\n",(clock() - timeMerge) / (double)CLOCKS_PER_SEC);
+  memcpy(arrayNumbers, arr, sizeof(int) * 10000);
+  timeMerge = clock();
+  merge(arrayNumbers, 0, 10000, 10000);
+  printf("\nMerge Sort:\t\t%f seconds\n",(clock() - timeMerge) / (double)CLOCKS_PER_SEC);
 
+  memcpy(arrayNumbers, arr, sizeof(int) * 10000);
   timeQuick = clock();
-  quickSort(rawList, 0, 10000);
-  //just for check the result 
-  listNumbers(rawList, 10000);
+  //listNumbers(arrayNumbers, 10000);
+  quickSort(arrayNumbers, 0, 10000);
+  //printf("\n ordenado \n");
+  //listNumbers(arrayNumbers, 10000);
   printf("\nQuick Sort:\t\t%f seconds\n",(clock() - timeQuick) / (double)CLOCKS_PER_SEC);
 
   fclose(numbers);
+  free(arr);
+  free(arrayNumbers);
   return 0;
 }
 

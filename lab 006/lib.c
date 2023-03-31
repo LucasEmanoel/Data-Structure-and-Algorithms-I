@@ -7,7 +7,7 @@ void listNumbers(int * vetor, int size){
    } 
 }
 
-int * bubbleSort(int *vetor, int n){
+void bubbleSort(int *vetor, int n){
    int aux, j, i;
    for (i = 0; i < n; i++) { 
        for (j = 0; j < n - i - 1; j++) {   
@@ -18,10 +18,9 @@ int * bubbleSort(int *vetor, int n){
            }
        }
    }
-   return vetor;
 }
 
-int * selectionSort(int *vetor, int n){
+void selectionSort(int *vetor, int n){
    int min, aux, j, i = 0;
 	
 	for(i = 0; i <= n-2; i++){
@@ -36,11 +35,10 @@ int * selectionSort(int *vetor, int n){
 		vetor[i] = vetor[min];
 		vetor[min] = aux;
 	}
-   return vetor;
 }
 
 
-int * insertionSort(int *vetor, int n){
+void insertionSort(int *vetor, int n){
 	int aux, i, j;
 	for(j=1; j < n; j++){
 		aux = vetor[j];
@@ -52,7 +50,6 @@ int * insertionSort(int *vetor, int n){
 		}
 		vetor[i + 1] = aux;
 	}
-  return vetor;
 }
 
 void merge(int *vetor, int ini, int mid, int end){
